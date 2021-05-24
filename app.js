@@ -36,7 +36,10 @@ const choosePokemon = async (id) =>{
         cache_info[id] = data;
         makePopUp(data);
     }
-    makePopUp(cache_info[id]);
+    else{
+        makePopUp(cache_info[id]);
+    }
+    
     
 } 
 
