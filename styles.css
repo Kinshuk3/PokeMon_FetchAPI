@@ -15,6 +15,7 @@ body {
 
 .card:hover{
     animation: bounce 0.5s linear;
+    cursor: pointer;
 }
 
 @keyframes bounce{
@@ -65,4 +66,39 @@ h1{
     text-align: center;
     font-weight: normal;
     font-size: 3em;
+}
+
+.popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: #f4f4f4;
+    opacity: 0.90;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#close{
+    position: absolute;
+    top: 15px;
+    right: 25px;
+}
+
+button{
+    background-color: rgba(0, 243, 203, 0.897);
+    padding: 10px 20px;
+    border: none;
+    color: black;
+    border-radius: 4px;
+    transition: transform 100ms;
+
+}
+
+button:hover{
+    cursor: pointer;
+    transform: translateY(-1px);
+    box-shadow: 0px 1px 2px rgb(92, 20, 20);
 }

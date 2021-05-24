@@ -1,71 +1,66 @@
-// async function pokeFetch(url){
-//     let response = await fetch(url);
-//     let data = await response.json();
-
-//     console.log(data); // all data
-
-//     let num = data.id;
-//     // console.log(num); // get the poke id
-
-//     let name = data.name;
-//     // console.log(name); // name
-
-//     document.getElementById('canvas').innerHTML += `<h2>${num}. ${name}</h2>`; // get name/id into DOM 
-
-//     let types = data.types; //array of object of types
-//     const array_types = [];
-
-//     types.forEach(element => { //get the types of pokemon separately in an array
-//         let all_type = element.type.name;
-//         array_types.push(all_type);
-
-//     });
-
-//     // console.log(array_types);
-//     document.getElementById('canvas').innerHTML += `<p>Types: ${array_types[0]} ${array_types[1]}</p>`;
-
-//     let image_url = data.sprites.front_default;
-//     document.getElementById('canvas').innerHTML += `<img src = ${image_url} alt = ${name}>`; //get the pokemon's image
-// }
-
-// pokeFetch('https://pokeapi.co/api/v2/pokemon/1');
-
 const my_pokedex = document.getElementById('my-pokedex');
-console.log(my_pokedex);
 
-const pokeFetch = () => {
+const cache_info = {};
 
-    const promises = [];
+const pokeFetch = async () => {
 
-    for (let i = 1; i <= 100; i++) {
+         const url = `https://pokeapi.co/api/v2/pokemon/?limit=150`;
 
-        const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-        promises.push(fetch(url).then(res => res.json()))
-    }
-    
-    Promise.all(promises).then(results =>{
-        const get_pokemon = results.map((data) =>({
-            name: data.name,
-            id: data.id,
-            image_url: data.sprites.front_default,
-            type: data.types.map(element => element.type.name)
-                .join(', ')
-        }))
-        console.log(show_pokemon(get_pokemon));
-    })
+         const res = await fetch(url);
+         const data = await res.json();
 
+         const pokeMon = data.results.map((result, index) =>({
+             ...result,
+             id: index + 1,
+             image_url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`
+         }));
+         show_pokemon(pokeMon);
 };
 
 const show_pokemon = (pokemon) =>{
-    console.log(pokemon);
+    // console.log(pokemon);
     const poke_string = pokemon.map(element => `
-        <li class="card">
+        <li class="card" onclick='choosePokemon(${element.id})'>
             <img class="card-image" src="${element.image_url}" alt='${element.name}'"/>
             <h2 class="card-head">${element.id}. ${element.name}</h2>
-            <p class="card-bottom">Types: ${element.type}</p>
         </li>
     `).join("");
     my_pokedex.innerHTML = poke_string;
 }
 
+const choosePokemon = async (id) =>{
+    if(!cache_info[id]){
+        const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        cache_info[id] = data;
+        makePopUp(data);
+    }
+    makePopUp(cache_info[id]);
+    
+} 
+
+const makePopUp = (data) =>{
+    const type = data.types.map(type => 
+        type.type.name).join(' , ');
+
+    const image = data.sprites['front_default'];
+
+    const my_info = `
+        <div class="popup">
+            <button id='close' onclick='closePopUp()'>Close</button>
+            <div class="card">
+                <img class="card-image" src="${image}" alt='${data.name}'"/>
+                <h2 class="card-head">${data.id}. ${data.name}</h2>
+                <p>Height: ${data.height} | Weight: ${data.weight} | Type: ${type}
+            </div>
+        </div>
+    `
+    my_pokedex.innerHTML = my_info + my_pokedex.innerHTML;
+};
+
+const closePopUp = () =>{
+    const popup = document.querySelector('.popup');
+    popup.parentElement.removeChild(popup);
+}
 pokeFetch();
