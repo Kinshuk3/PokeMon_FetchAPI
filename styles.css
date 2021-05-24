@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body {
+    background-color: rgb(255, 139, 44);
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+ }
+
+.card{
+    list-style: none;
+    padding: 40px;
+    background-color: rgb(201, 200, 200);
+    color: #555;
+}  
+
+.card:hover{
+    animation: bounce 0.5s linear;
+}
+
+@keyframes bounce{
+    20%{
+        transform: translateY(-1em);
+    }
+    40%{
+        transform: translateY(0em);
+    }
+    60%{
+        transform: translateY(-0.5em);
+    }
+    80%{
+        transform: translateY(0em);
+    }
+}
+#my-pokedex{
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 25px;
+    text-align: center;
+}
+
+.card-head{
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.card-bottom{
+    font-weight: lighter;
+    color: #888;
+    margin-top: 0.6em;
+}
+
+.card-image{
+    height: 10em;
+}
+
+.outside{
+    padding: 4em;
+}
+
+h1{
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: normal;
+    font-size: 3em;
+}
