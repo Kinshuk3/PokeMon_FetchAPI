@@ -15,4 +15,11 @@ with Javasript, Asynchronous Javascript, ES6, HTML5 and CSS.
 ### Demo
 [Click here to go for a Demo](https://kinshuk3.github.io/PokeMon_FetchAPI/)
 
+### ScreenShots
+- The homepage layout
+    </br>
+    <img src="/screenshots/img1.png" alt= "Display Homepage" width="600" height="300"/>
+- Individual Pokemon layout
+    </br>
+    <img src="/screenshots/img2.png" alt= "Display Pokemon details" width="600" height="300"/>
 
