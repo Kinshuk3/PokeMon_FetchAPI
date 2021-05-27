@@ -5,9 +5,10 @@ with Javasript, Asynchronous Javascript, ES6, HTML5 and CSS.
 
  ## Features
 
-  There are 2 main features of this application as shown below:
+  There are 3 main features of this application as shown below:
   - View All Pokemons: The user can see all the Pokemons displayed on the screen homepage
   - View Individual Pokemon: The user can see individual Pokemons' abilites and details by clicking on them and enabling Pop up
+  - Caching of Data: Once a peokemon is clicked, and information is seen, it stores the data in cache memory and dont make any further FETCH calls.
 
 ### API Used: 
 [Click Here](https://pokeapi.co/)
