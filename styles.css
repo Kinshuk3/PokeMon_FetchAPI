@@ -1,11 +1,18 @@
+/* 
+This css file provides styling for our application
+*/
+
+/* Get the font fr header */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
+/* Set the initial state of body */
 body {
     background-color: rgb(255, 139, 44);
     margin: 0;
     font-family: 'Roboto', sans-serif;
  }
 
+/* Layout for each card */
 .card{
     list-style: none;
     padding: 40px;
@@ -13,11 +20,13 @@ body {
     color: #555;
 }  
 
+/* On hovering over each card */
 .card:hover{
     animation: bounce 0.5s linear;
     cursor: pointer;
 }
 
+/* This produces bouncy effect on hovering over each pokemon card */
 @keyframes bounce{
     20%{
         transform: translateY(-1em);
@@ -32,6 +41,8 @@ body {
         transform: translateY(0em);
     }
 }
+
+/* This makes all the elements in body with grid styling and spacing */
 #my-pokedex{
     padding-left: 0;
     display: grid;
@@ -40,6 +51,7 @@ body {
     text-align: center;
 }
 
+/* This styles the heading of each card */
 .card-head{
     text-transform: uppercase;
     font-size: 2em;
@@ -47,20 +59,23 @@ body {
     margin-bottom: 0;
 }
 
+/* This styles the bottom text for each card */
 .card-bottom{
     font-weight: lighter;
     color: #888;
     margin-top: 0.6em;
 }
 
+/* Size of each image */
 .card-image{
     height: 10em;
 }
-
+/* The default padding for outside of cards */
 .outside{
     padding: 4em;
 }
 
+/* the heading of our application */
 h1{
     text-transform: uppercase;
     text-align: center;
@@ -68,6 +83,7 @@ h1{
     font-size: 3em;
 }
 
+/* The styling for popup when any pokemon is clicked */
 .popup{
     position: fixed;
     top: 0;
@@ -81,12 +97,14 @@ h1{
     align-items: center;
 }
 
+/* The close button position */
 #close{
     position: absolute;
     top: 15px;
     right: 25px;
 }
 
+/* The close button styling */
 button{
     background-color: rgba(0, 243, 203, 0.897);
     padding: 10px 20px;
@@ -97,6 +115,7 @@ button{
 
 }
 
+/* effects on hovering over CLOSE button */
 button:hover{
     cursor: pointer;
     transform: translateY(-1px);
